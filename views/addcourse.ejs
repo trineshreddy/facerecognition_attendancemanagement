@@ -1,0 +1,40 @@
+<%- include("header") -%>
+        <center>
+            <h3>Add course</h3>
+            <form action="/addcourse" method="POST">
+            <table>
+                <tr>
+                    <td>Course id:</td>
+                    <td>
+                        <input type="text" name="course_id" placeholder="Enter course id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>instructor id:</td>
+                    <td>
+                        <input type="text" name="teacher_id" placeholder="Enter instructor id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course name:</td>
+                    <td>
+                        <input type="text" name="course_name" placeholder="Enter course name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Credits:</td>
+                    <td>
+                        <input type="number" name="credits" placeholder="Enter no of credits">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="submit" value="add course">
+                    </td>
+              
+                </tr>
+            </table>
+            </form>
+        </center>
+
+<%- include("footer") -%>

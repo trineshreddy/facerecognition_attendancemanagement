@@ -1,0 +1,43 @@
+ /* body{
+  background-color:green;
+  background-image: url("C:\Users\trinesh reddy\Desktop\attendance_management\public\images\logo.jpg");
+  background-size:cover;
+  background-attachment: fixed;
+
+} */
+body{
+  background-color:yellow;
+
+}
+.navcolor{
+  background-color: orange;
+}
+
+h1{
+  font-family: "Montserrat-Black";
+  font-size: 3rem;
+  line-height:1.5;
+
+}
+
+
+
+footer {
+  text-align: center;
+  padding:0;
+  background-color:black;
+  color: white;
+  width:90%;
+  margin:100px 100px 100px 0;
+
+}
+center{
+  padding:0;
+}
+.links{
+  margin:40px;
+}
+#nitk{
+  text-align: center;
+  margin:50px 100px 100px 100px;
+}

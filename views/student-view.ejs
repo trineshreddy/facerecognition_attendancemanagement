@@ -1,0 +1,33 @@
+<%- include("header") -%>
+
+ <h1> Welcome  <%=studentname %> </h1>
+   <center>
+   <div class="">
+      <a href="/">Mycourses</a>
+   </div>
+  <div class="">
+    <a href="/">seeAttendance</a>
+  </div>
+  <div class="">
+    <a href="/">Takecourse</a>
+  </div>
+  <div class="">
+      <%  rows.forEach(function(course){ %>
+        <ul>
+          <li><%=course.coursename%></li>
+        </ul>
+        <% }) %>
+
+  </div>
+</center>
+
+
+
+
+
+
+
+
+
+
+<%- include("footer") -%>

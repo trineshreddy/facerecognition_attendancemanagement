@@ -1,0 +1,41 @@
+    <%- include("header") -%>
+        <center>
+            <h3>Teacher Login</h3>
+            <form action="/teacher-view" method="GET">
+                <table>
+                    <tr>
+                        <td>Name:</td>
+                        <td>
+                            <input type="text" name="teacher_name" placeholder="Enter your name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Id:</td>
+                        <td>
+                            <input type="text" name="teacher_id" placeholder="Enter your id">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Password:</td>
+                        <td>
+                            <input type="password" name="teacher_password" placeholder="Enter your password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="submit" value="Login">
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            Not yet signed in?<form class="" action="/teacher-signup" method="GET">
+               <button type="submit" name="button">Signup AS teacher</button>
+            </form>
+        </center>
+
+
+     <%- include("footer") -%>
