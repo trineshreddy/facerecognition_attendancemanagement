@@ -49,6 +49,195 @@ app.get('/photo',(req,res)=>{
   res.render("photo");
 
 })
+//pcv
+
+app.get("/courses/:pcourse",(req,res)=>{
+   let coursename=req.params.pcourse;
+  let query1=`select student_id from studentcourses where course_id=(select id from courses where coursename='${coursename}')`;
+
+
+
+    db.query(query1,(err,rows)=>{
+      if(err) throw err;
+      console.log("we are here")
+      console.log(rows);
+        console.log("we are not here")
+
+
+      res.render("pcv",{rows:rows,coursename:coursename});
+
+    })
+
+
+
+})
+//show attendance for student
+
+app.get("/student/:pcourse/:sname",(req,res)=>{
+  let coursename=req.params.pcourse;
+  let studentname=req.params.sname;
+  let query=`select id from courses where coursename='${coursename}'`;
+  db.query(query,(err,rows)=>{
+    if(err) throw err;
+
+    let id=rows[0].id;
+
+    let query2="select * from " +id+"_attendance where student_name="+"'" +studentname + "'";
+    db.query(query2,(err,rows2)=>{
+      if(err) throw err;
+      console.log(rows2);
+      res.render("studentav",{rows2:rows2})
+    })
+})
+})
+
+//show attendance for teacher
+
+app.get("/attendance/:pcourse",(req,res)=>{
+  let coursename=req.params.pcourse;
+  let query=`select id from courses where coursename='${coursename}'`;
+  let s="";
+
+
+  db.query(query,(err,rows)=>{
+    if(err) throw err;
+    console.log(rows);
+    let id=rows[0].id;
+    console.log("the id is"+id)
+    console.log("select * from " +id+"_attendance")
+    let query2="select * from " +id+"_attendance";
+    db.query(query2,(err,rows2)=>{
+      if(err) throw err;
+      console.log(rows2);
+
+      for(var i in rows2){
+   var key = i;
+   var val = rows2[i];
+   for(var j in val){
+       var sub_key = j;
+       var sub_val = val[j];
+       console.log(sub_val);
+   }
+   console.log("end")
+}
+
+
+
+       res.render("showattendance",{rows2:rows2})
+
+    })
+
+
+  })
+
+
+})
+
+//take _attendance
+
+app.get('/takeattendance/:pcourse',(req,res)=>{
+   let coursename=req.params.pcourse;
+
+    let query=`select name,id from student where id in(select student_id from studentcourses where course_id=(select id from courses where coursename='${coursename}'))`;
+  db.query(query,(err,rows)=>{
+    if(err) throw err;
+    console.log(rows);
+     res.render("takeattendance",{rows:rows,coursename:coursename});
+  })
+})
+
+//update _attendance
+
+app.post('/updateattendance/:pcourse',(req,res)=>{
+   let coursename=req.params.pcourse;
+   console.log("the namderjfn" + coursename)
+   console.log(req.body);
+ console.log("ejfn")
+ let input=req.body;
+
+
+  let c=new Date();
+  let day;
+
+  switch (c.getMonth()) {
+    case 0:
+      day = "jan";
+      break;
+    case 1:
+      day = "feb";
+      break;
+    case 2:
+       day = "mar";
+      break;
+    case 3:
+      day = "april";
+      break;
+    case 4:
+      day = "may";
+      break;
+    case 5:
+      day = "june";
+      break;
+    case 6:
+      day = "july";
+      case 7:
+        day = "aug";
+        break;
+        case 8:
+          day = "sep";
+          break;
+          case 9:
+            day = "oct";
+            break;
+            case 10:
+              day = "nov";
+              break;
+              case 11:
+                day = "dec";
+
+
+
+  }
+
+  let cname=c.getDate()+day +c.getFullYear();
+  console.log(cname);
+
+  let query=`select id from courses where coursename='${coursename}'`;
+  db.query(query,(err,rows)=>{
+    if(err) throw err;
+    let id=rows[0].id;
+    let tablename=id+"_attendance";
+
+     let query1 = `alter table ${tablename} add ${cname} varchar(1) default 'a'`;
+      db.query(query1,(err,rows1)=>{
+        if(err) throw err;
+        console.log(rows1);
+  let s="";
+        for (const key of Object.keys(input)) {
+          console.log("bkbdjrndjknd")
+
+             for(let i=1;i<key.length-1;i++)
+              s+=key[i];
+              console.log(s);
+          let query4=`update ${tablename} set ${cname}='p' where student_name= '${s}'`;
+          console.log(key)
+          console.log(query4);
+          db.query(query4,(err,rows2)=>{
+            if(err) throw err;
+
+          })
+          s="";
+        }
+      })
+
+
+
+
+  })
+
+})
+
+
 //view student
 app.get('/student-view',(req,res)=>{
 

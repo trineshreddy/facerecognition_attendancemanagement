@@ -1,0 +1,40 @@
+<%- include("header") -%>
+
+
+
+  <center>
+
+<h1>the students in this course are</h1>
+
+<%  rows.forEach(function(student){ %>
+  <ul>
+    <li><h1><%=student.student_id%></h1></li>
+  </ul>
+  <% }) %>
+
+  <a href="/attendance/<%=coursename%>"><h1>show attendance</h1></a>
+  <a href="/takeattendance/<%=coursename%>"><h1>take attendance</h1></a>
+
+
+
+  </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include("footer") -%>

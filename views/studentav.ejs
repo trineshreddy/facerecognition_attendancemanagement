@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <style>
+          th{
+              color:#fff;
+                  }
+      </style>
+</head>
+<body>
+ <center>
+  <h1> MY Attendance is </h1>
+
+  </center>
+
+  <%  let input=rows2[0]  %>
+
+<table class="table table-striped">
+
+
+    <tr  class="bg-info">
+         <% for (const key of Object.keys(input)) {  %>
+        <th><%= key %></th>
+  <%      }    %>
+  </tr>
+    <tbody id="myTable">
+
+      <%   for(var i in rows2){   %>
+      <%   var key = i;            %>
+      <%   var val = rows2[i];       %>
+       <tr>
+
+      <%    for(var j in val){    %>
+      <%    var sub_key = j;     %>
+        <%   var sub_val = val[j];   %>
+
+             <td>  <%=  sub_val  %>   </td>
+
+      <% } %>
+
+       </tr>
+
+  <%  }      %>
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+  </html>

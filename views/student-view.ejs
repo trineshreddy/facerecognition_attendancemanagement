@@ -1,20 +1,16 @@
 <%- include("header") -%>
 
- <h1> Welcome  <%=studentname %> </h1>
+
    <center>
-   <div class="">
-      <a href="/">Mycourses</a>
-   </div>
-  <div class="">
-    <a href="/">seeAttendance</a>
-  </div>
-  <div class="">
-    <a href="/">Takecourse</a>
-  </div>
+   <h1> Welcome  <%=studentname %> </h1>
+   <br><br>
+  <h1>MY courses </h1>
+  <br><br>
+
   <div class="">
       <%  rows.forEach(function(course){ %>
         <ul>
-          <li><%=course.coursename%></li>
+          <li><a href="/student / <%=course.coursename%> / <%=studentname %> "><h1><%=course.coursename%></h1></a></li>
         </ul>
         <% }) %>
 

@@ -1,0 +1,29 @@
+<%- include("header") -%>
+<center>
+<h1>take attendance</h1>
+
+
+
+
+<form action="/updateattendance/<%=coursename%> " method="post">
+
+<%  rows.forEach(function(student){ %>
+
+  <input type="checkbox" id=" <%=student.id%> " name=" <%= student.name %> "        >
+  <label for=" <%=student.id%> "> <h1> <%= student.name %></h1> </label>  <br>
+
+  <% }) %>
+
+  <br>
+
+
+
+<input type="submit" value="Submit">
+</form>
+
+
+
+
+</center>
+
+<%-  include("footer") -%>
