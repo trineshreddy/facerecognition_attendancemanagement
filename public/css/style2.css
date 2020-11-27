@@ -2,9 +2,11 @@
 body{
   background-color: #DFCFBE;
 }
-.navcolor{
-  color:orange;
+
+.customnavclass{
+  color:red;
 }
+
 /* footer{
 
 } */

@@ -49,11 +49,29 @@ app.get('/photo',(req,res)=>{
   res.render("photo");
 
 })
+
+//facerecognition
+app.get("/facerecognition/:pcourse",(req,res)=>{
+  let coursename=req.params.pcourse;
+  res.render("facerecog",{coursename:coursename})
+})
+//take takephoto
+app.get("/takephoto",(req,res)=>{
+  res.render("takephoto")
+})
+//test photos
+app.get("/index",(req,res)=>{
+  res.render("index")
+
+})
+
+
+
 //pcv
 
 app.get("/courses/:pcourse",(req,res)=>{
    let coursename=req.params.pcourse;
-  let query1=`select student_id from studentcourses where course_id=(select id from courses where coursename='${coursename}')`;
+  let query1=`select name from student where id in(select student_id from studentcourses where course_id=(select id from courses where coursename='${coursename}'))`;
 
 
 
@@ -214,7 +232,7 @@ app.post('/updateattendance/:pcourse',(req,res)=>{
         console.log(rows1);
   let s="";
         for (const key of Object.keys(input)) {
-          console.log("bkbdjrndjknd")
+
 
              for(let i=1;i<key.length-1;i++)
               s+=key[i];
@@ -234,6 +252,7 @@ app.post('/updateattendance/:pcourse',(req,res)=>{
 
 
   })
+  res.render("attendancesucess")
 
 })
 
@@ -372,7 +391,7 @@ app.post('/student-signup',(req,res)=>{
     if (err)
       {return res.status(500).send(err);}
 
-    res.send('File uploaded!');
+    res.render('sucess');
   });
 })
 
@@ -385,7 +404,7 @@ app.post('/teacher-signup',(req,res)=>{
   let new_teacher={id:req.body.teacher_id,name:req.body.teacher_name,mail:req.body.teacher_email,password:req.body.teacher_password,gender:req.body.gender,phonenumber:req.body.teacher_ph};
   db.query('insert into teacher set ?',new_teacher,(err,result)=>{
     if(err) throw err;
-    console.log("we got updated"+   result);
+    res.render('sucess');
   });
 })
 
@@ -398,6 +417,8 @@ app.post('/addcourse',(req,res)=>{
   db.query('insert into courses set ?',new_course,(err,result)=>{
     if(err) throw err;
     console.log("we got updated"+   result);
+    let name="course to database"
+    res.render("sucesscourse",{title:name})
   });
 })
 
@@ -413,17 +434,10 @@ app.post('/astc',(req,res)=>{
   db.query('insert into studentcourses set ?',astc,(err,result)=>{
     if(err) throw err;
     console.log("we got updated"+   result);
+    let name="student to course"
+    res.render("sucesscourse",{title:name})
   });
 })
-
-
-
-
-
-
-
-
-
 
 
 

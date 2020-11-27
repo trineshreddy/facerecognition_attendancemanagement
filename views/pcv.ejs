@@ -8,12 +8,13 @@
 
 <%  rows.forEach(function(student){ %>
   <ul>
-    <li><h1><%=student.student_id%></h1></li>
+    <li><h1><%=student.name%></h1></li>
   </ul>
   <% }) %>
 
   <a href="/attendance/<%=coursename%>"><h1>show attendance</h1></a>
   <a href="/takeattendance/<%=coursename%>"><h1>take attendance</h1></a>
+  <a href="/facerecognition/<%=coursename%>"><h1>facerecog-attendance</h1></a>
 
 
 
